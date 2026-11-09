@@ -37,6 +37,8 @@ python e2e.py           # researcher → verifier → reviewer, real files, real
 
 `selftest.py` needs only the standard library. Nothing is mocked: every assertion runs the CLI and checks exit codes, database state and artifacts on disk.
 
+`e2e.py` calls a model only in its last step. Without `BUS_LLM_KEY` (or `OPENAI_API_KEY` / `QWEN_API_KEY`) that step prints `SKIP: model channel unavailable` and the rest still runs — the run is not a failure.
+
 ---
 
 ## Core concepts

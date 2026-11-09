@@ -268,6 +268,8 @@ python selftest.py     # 30 项断言，全过才返回 0
 python e2e.py          # 真链路：researcher → verifier → 模型复核
 ```
 
+`e2e.py` 只有最后一步调模型。没设 `BUS_LLM_KEY`（或 `OPENAI_API_KEY` / `QWEN_API_KEY`）时该步打印 `SKIP: 模型通道不可用`，其余照跑，不算失败。
+
 覆盖：幂等、租约互斥、证据门（缺失/篡改）、审批门、租约回收、attempts 上限、
 researcher→verifier 全链路、handoff 落盘、packet 预算、kanban mirror、
 证据门的三条负数用例（字符串命令 / 缺 produced_by / stdout 被改）、

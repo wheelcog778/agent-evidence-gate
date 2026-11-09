@@ -7,7 +7,8 @@
 
 环境：
   AGENT_BUS_PACKET / AGENT_BUS_WORKDIR 由 runner 注入
-  HERMES_CUSTOM_QWEN_API_KEY 或 QWEN_API_KEY
+  BUS_LLM_KEY（或 OPENAI_API_KEY / QWEN_API_KEY）
+  BUS_LLM_BASE / BUS_LLM_MODEL 可选，默认 OpenAI 兼容端点
 """
 from __future__ import annotations
 
@@ -24,7 +25,8 @@ if hasattr(sys.stdout, "reconfigure"):
 
 BASE = os.environ.get("BUS_LLM_BASE", "https://api.openai.com/v1")
 MODEL = os.environ.get("BUS_LLM_MODEL", "gpt-4o-mini")
-KEY = os.environ.get("HERMES_CUSTOM_QWEN_API_KEY") or os.environ.get("QWEN_API_KEY") or ""
+KEY = (os.environ.get("BUS_LLM_KEY") or os.environ.get("OPENAI_API_KEY")
+       or os.environ.get("QWEN_API_KEY") or "")
 
 
 def sha256(p: Path) -> str:
