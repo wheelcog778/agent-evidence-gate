@@ -27,7 +27,7 @@ A lightweight model saying "done" is a claim, not a fact. You cannot make reliab
 ## Quick start (30 seconds, no dependencies)
 
 ```bash
-git clone https://github.com/<your-org>/agent-evidence-gate
+git clone https://github.com/wheelcog778/agent-evidence-gate
 cd agent-evidence-gate
 python selftest.py      # 30 assertions against the real state machine
 python e2e.py           # researcher → verifier → reviewer, real files, real gate
