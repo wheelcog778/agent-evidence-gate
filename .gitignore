@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Runtime state — the bus writes these
+*.db
+*.db-shm
+*.db-wal
+*.log
+runs/
+inbox/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
