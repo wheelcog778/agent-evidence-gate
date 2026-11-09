@@ -103,7 +103,7 @@ to prove your own gates will pass on the holes they were meant to catch.
 On this machine the equivalents already exist — map before proposing new parts: `delegate_task`
 ≈ agent registry, the handoff task board + `mkdir` locks ≈ orchestrator, Windows scheduled jobs
 ≈ scheduler, `AGENTS.md` §4 ≈ acceptance gate. Name what is genuinely missing rather than
-re-proposing what runs. A worked implementation of §2 also lives at `C:\Users\QxiYy\agent-evidence-gate\`
+re-proposing what runs. A worked implementation of §2 also lives at `this repository`
 (state machine, runner, evidence gate, context packet, handoff and kanban bridges, self-test) —
 read it before writing a second one, and extend it rather than forking a variant.
 
