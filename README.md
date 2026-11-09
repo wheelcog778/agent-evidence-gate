@@ -2,6 +2,8 @@
 
 > Put uncertainty into structure, not into prompting.
 
+![demo: 8 gates running for real](docs/demo.gif)
+
 A dependency-free Python task bus that makes small, cheap models reliable enough to run unattended — a SQLite state machine with leases, **evidence gates**, approval gates and byte-budgeted context packets, plus a 21-item anti-pattern playbook distilled from real failures.
 
 **What it is:** the layer that decides *who does the task, whether the result can be trusted, and what happens when a worker dies.*
@@ -189,3 +191,7 @@ Consulting on production agent pipelines — audits of retry/idempotency, approv
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+## Contact
+
+Author: Q洗Y烟机 · 753073396@qq.com
