@@ -2,7 +2,7 @@
 name: agent-output-audit
 description: Use when verifying another agent's claimed outputs.
 version: 1.2.0
-author: Q洗Y烟机
+author: wheelcog778
 license: CC-BY-4.0
 metadata:
   hermes:

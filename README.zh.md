@@ -313,4 +313,4 @@ demo 的 `shell=True`）。逐条在 `codex-review.md` 对照，`selftest.py` �
 
 ## 联系
 
-作者：Q洗Y烟机 · 753073396@qq.com
+作者：wheelcog778 · 753073396@qq.com
