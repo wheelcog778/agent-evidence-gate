@@ -22,7 +22,7 @@ CrewAI / AutoGen / MetaGPT 解决的是"几个 LLM 谁先说话"。真实团队�
 | agent 说"做完了"，其实没产物 | 证据门：文件必须存在且 sha256 未变 |
 | agent 把上游 10KB 长文全吃进上下文 | packet 按字节预算裁剪，只给结论与路径 |
 | 会发外部消息/花钱的活直接执行了 | 四类审批门，超时即拒 |
-| 交接靠人记住 | handoff 五列自动落 `交接/inbox` |
+| 交接靠人记住 | handoff 五列自动落到 `handoff/inbox` |
 
 ---
 
@@ -99,7 +99,7 @@ queued ──claim──▶ claimed ──start──▶ running ──done─�
 
 **交接**
 - `handoff`：写五列（时间 / 上游要什么 / 我做了什么 / 产出路径 / 下次第一步）
-- 自动追加到 `交接/inbox/<日期>-<agent>.md`，带块标记，同一任务重写只替换不追加
+- 自动追加到 `handoff/inbox/<日期>-<agent>.md`，带块标记，同一任务重写只替换不追加
 - 能回写 `交接/任务板.md` 的「下次第一步」列（`source=board:T-xxx` 时）
 
 **融合**
@@ -147,7 +147,7 @@ python runner.py --id <task_id> --cmd 'python "{ROOT}/demo/agent_research.py"'
 | `block` / `approve` | 人工卡点 |
 | `reap` | 回收过期租约、超期任务 |
 | `packet` | 打印该 agent 能看到的上下文（含预算与省了多少） |
-| `handoff` | 写五列交接，同步 `交接/inbox`，回写任务板「下次第一步」 |
+| `handoff` | 写五列交接，同步 `handoff/inbox`，回写看板的「下次第一步」 |
 
 ---
 
