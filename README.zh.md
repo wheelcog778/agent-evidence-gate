@@ -1,5 +1,7 @@
 # 证据门：让轻量模型跑得住的多智能体底座
 
+[![ci](https://github.com/wheelcog778/agent-evidence-gate/actions/workflows/ci.yml/badge.svg)](https://github.com/wheelcog778/agent-evidence-gate/actions/workflows/ci.yml)
+
 > 把不确定性压进结构里，而不是指望模型自己稳。
 
 ![演示：8 道门真跑](docs/demo.gif)

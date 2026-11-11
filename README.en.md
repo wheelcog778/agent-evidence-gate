@@ -1,5 +1,7 @@
 # Evidence Gate for Lightweight LLM Agents
 
+[![ci](https://github.com/wheelcog778/agent-evidence-gate/actions/workflows/ci.yml/badge.svg)](https://github.com/wheelcog778/agent-evidence-gate/actions/workflows/ci.yml)
+
 > Put uncertainty into structure, not into prompting.
 
 ![demo: 8 gates running for real](docs/demo.gif)
