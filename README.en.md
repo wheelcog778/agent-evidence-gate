@@ -4,7 +4,7 @@
 
 ![demo: 8 gates running for real](docs/demo.gif)
 
-A dependency-free Python task bus that makes small, cheap models reliable enough to run unattended — a SQLite state machine with leases, **evidence gates**, approval gates and byte-budgeted context packets, plus a 21-item anti-pattern playbook distilled from real failures.
+A dependency-free Python task bus for running small, cheap models unattended without taking their "done" on trust — a SQLite state machine with leases, **evidence gates**, approval gates and byte-budgeted context packets, plus a 21-item anti-pattern playbook distilled from real failures.
 
 **What it is:** the layer that decides *who does the task, whether the result can be trusted, and what happens when a worker dies.*
 **What it is not:** another agent framework, a group chat, or a replacement for your runtime.
@@ -36,6 +36,8 @@ python e2e.py           # researcher → verifier → reviewer, real files, real
 ```
 
 `selftest.py` needs only the standard library. Nothing is mocked: every assertion runs the CLI and checks exit codes, database state and artifacts on disk.
+
+`e2e.py` calls a model only in its last step. Without `BUS_LLM_KEY` (or `OPENAI_API_KEY` / `QWEN_API_KEY`) that step prints `SKIP: model channel unavailable` and the rest still runs — the run is not a failure.
 
 ---
 

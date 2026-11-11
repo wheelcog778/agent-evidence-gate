@@ -125,7 +125,7 @@ python e2e.py             # 真链路，会调一次模型（约 2 分钟）
 
 ## 边界
 
-只读 `AGENTS.md` 与 `交接/`，未改任何既有规则文件、未碰潜龙本体、未发版到任何产品。
+只读 `AGENTS.md` 与 `交接/`，未改任何既有规则文件、未碰任何产品本体、未发版到任何产品。
 """
     (ROOT / "交付说明.md").write_text(doc, encoding="utf-8")
     files = files + ["SHA256SUMS.txt", "交付说明.md"]
