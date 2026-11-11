@@ -12,6 +12,8 @@ venv/
 *.log
 runs/
 inbox/
+relay_out/
+relay_inbox/
 
 # OS / editor
 .DS_Store

@@ -21,8 +21,9 @@ OUT_DIR = Path.home() / "交付"
 VERSION = "v0.2"
 
 INCLUDE = [
-    "bus.py", "context.py", "runner.py", "bridge_handoff.py", "bridge_kanban.py",
+    "bus.py", "context.py", "runner.py", "bridge_handoff.py", "bridge_kanban.py", "bridge_relay.py",
     "e2e.py", "selftest.py", "pack.py",
+    "docs/relay-bridge.md",
     "demo/agent_research.py", "demo/agent_verify.py", "demo/agent_llm.py",
     "profiles/researcher.md", "profiles/verifier.md",
     "RULES.md", "README.md", "REPORT-2026-11-08.md",

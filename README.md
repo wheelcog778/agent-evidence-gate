@@ -23,6 +23,7 @@ A lightweight model saying "done" is a claim, not a fact. You cannot make reliab
 | Upstream dumps 10 KB into the next agent's prompt | Packet with byte caps per slot; oversized slots are dropped and recorded |
 | A task that sends messages or spends money just runs | Four approval classes: `outbound`, `spend`, `delete`, `permission` |
 | Handoff relies on someone remembering | Five-column handoff written atomically into `inbox/` |
+| The worker is a GUI app that cannot run a command | `bridge_relay.py`: claims on its behalf and snapshots the output dir at dispatch; a file older than the dispatch is not evidence |
 
 ---
 
@@ -107,6 +108,25 @@ queued ──claim──▶ claimed ──start──▶ running ──done─�
 
 Terminal states cannot be resurrected; `runner` refuses to start anything that is not `running`, unexpired, approved and within deadline; `fail --retry` cannot bypass approval.
 
+### 5. Relay bridge: a worker without a shell
+
+Some workers cannot run a command — a desktop chat app, a browser tab, a human typing into
+a window. They still have to be gated, so `bridge_relay.py` takes their place in the state
+machine:
+
+```bash
+python bus.py submit --agent gui-worker --title "..." --payload '{"expected_artifact":"report.md"}'
+python bridge_relay.py dispatch --id t_xxx    # claim+start, render BRIEF.md, snapshot out dir
+# paste the first line of relay_inbox/t_xxx.md into the window
+python bridge_relay.py collect  --id t_xxx    # diff snapshot, copy evidence, attach, done
+```
+
+Ownership stays single-writer (`claim --agent gui-worker --owner relay`), so the worker is
+never asked to touch the bus. `collect` accepts only files that did not exist at dispatch
+time **and** whose mtime is strictly later; everything else is `stale_rejected`. A `relayed`
+event records who relayed what, with `worker_ran_bus: false`. Full note, including what the
+snapshot does *not* prove: [`docs/relay-bridge.md`](docs/relay-bridge.md).
+
 ---
 
 ## The 21 anti-patterns (excerpt)
@@ -170,6 +190,8 @@ agent-evidence-gate/
 ├── pack.py                # snapshot the repo with hashes
 ├── bridge_handoff.py      # write handoff blocks into inbox/
 ├── bridge_kanban.py       # mirror Hermes kanban cards into the bus (idempotent)
+├── bridge_relay.py        # relay a task to a worker that cannot run commands
+├── docs/relay-bridge.md   # relay bridge: provenance, limits, self-test
 ├── demo/                  # three demo agents
 ├── profiles/              # role briefs (researcher, verifier)
 ├── RULES.md               # hard constraints injected into every packet

@@ -176,6 +176,23 @@ python bridge_kanban.py push             # 打印回写命令；--exec 才真写
 kanban 的 body 经常几 KB，`mirror` 只取标题 + 前 1200 字节 + workspace 路径，
 避免把整段历史塞进 agent 上下文。
 
+### 3. GUI agent（没有 CLI）：接力桥
+
+有的 worker 根本不能跑命令——桌面聊天应用、浏览器里的模型、人手工敲的窗口。它不能 claim、
+不能交证据，但任务还是要过同一道门。`bridge_relay.py` 顶替它在状态机里的位置：
+
+```bash
+python bus.py submit --agent gui-worker --title "验收这份文档" --payload '{"expected_artifact":"report.md"}'
+python bridge_relay.py dispatch --id t_xxx    # 代 claim + start，渲染 BRIEF.md，派单时刻建快照
+# 把 relay_inbox/t_xxx.md 的首行粘进那个窗口
+python bridge_relay.py collect  --id t_xxx    # diff 快照、复制证据、登记、done
+```
+
+所有权仍是单写者：`claim --agent gui-worker --owner relay`，worker 全程不碰总线。
+`collect` 只认「派单时不存在、且 mtime 严格晚于派单」的文件，其余进 `stale_rejected`；
+另写一条 `relayed` 事件（`worker_ran_bus: false`）留痕。完整说明，包括快照**不能**证明什么：
+[`docs/relay-bridge.md`](docs/relay-bridge.md)。
+
 ---
 
 ## 上下文预算（"少吃上下文"）
